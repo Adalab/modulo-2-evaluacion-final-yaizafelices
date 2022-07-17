@@ -1,45 +1,39 @@
 'use strict';
 
-let animeDataList = [];
+let animes = [];
 
-function renderAnimes(animeData) {
-    const anime = `<li class="list">
-        <h3 class="card_title">${animeData.title}</h3>
-        <img
-            class="anime_img"
-            src=${animeData.image_url}
-            alt="Portada de la serie de anime"
-        />
-    </li>`;
-    return anime;
+function renderAnime() {
+    let html = '';
+    for (const oneAnime of animes) {
+        html += ` <li class="js-one-anime">`;
+        html += ` <div class="js-container-anime">`;
+        html += ` <h3>${oneAnime.title}</h3>`;
+        html += ` <img class="anime_img" src=${animeImage} alt="Portada de la serie de anime ${oneAnime.title}"/>`;
+        html += `</div></li>`;        
+    }
+    resultsList.innerHTML = html;
+    // listenerAnimes();
 }
 
+function animeImage(data) {
+    if (
+      data.images.jpg.image_url ===
+      "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+    ) {
+      ("https://via.placeholder.com/210x295/ffffff/666666/?text=TV");
+    } else {
+      return data.images.jpg.image_url;
+    }
+  }
 
-
-// function renderAnimes() {
-//     let html = '';
-//     for (const oneAnime of animesDataList) {
-//       html += ` <li class="js-results-list">`;
-//       html += ` <h3>${oneAnime.title}</h3>`;
-//       html += `<img
-//       class="anime_img"
-//       src=${oneAnime.image}
-//       alt="Imagen de la portada de la serie"
-//     />`;
-//       html += ` </li>`;
-//     }
-//     animesDataList.innerHTML = html;
-//   }
-
-// function getDataApi() {
-//     fetch(
-//       'https://api.jikan.moe/v4/anime?q=naruto'
-//     )
-//       .then((response) => response.json())
-//       .then((data) => {
-//         animes = data.animes;
-//         localStorage.setItem('data', JSON.stringify(animes));
-//         renderAnimes(animes);
-//       });
-//   }
-//   getDataApi();
+function getDataApi() {
+    fetch(
+      'https://api.jikan.moe/v4/anime?q=naruto'
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let animes = data.data;
+      });
+  }
+  
+  getDataApi();
