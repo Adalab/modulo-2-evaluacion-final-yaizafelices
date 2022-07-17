@@ -1,0 +1,43 @@
+.anime{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+
+    @media all and (min-width: 768px){
+        flex-direction: row;
+    }
+
+    &__favorite{
+        border: 3px solid $color-font;
+        border-radius: 4%;
+        margin: 20px;
+
+        @media all and (min-width: 768px){
+            width: 30%;
+        }
+
+        &-title{
+            background-color: $color-font;
+            color: $color-background;
+            font-size: 30px;
+        }
+        
+    }
+
+    &__results{
+        border: 3px solid $color-font-secondary;
+        border-radius: 4%;
+        margin: 20px;
+
+        @media all and (min-width: 768px){
+            width: 60%;
+        }
+
+        &-title{
+            background-color: $color-font-secondary;
+            color: $color-background;
+            font-size: 30px;
+        }
+    }
+
+}
