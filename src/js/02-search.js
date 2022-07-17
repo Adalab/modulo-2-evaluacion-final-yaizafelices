@@ -3,6 +3,8 @@
 const resultsList = document.querySelector('.js-results-list');
 const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
+const inputValue = inputAnime.value.toLowerCase();
+
 
 let dataAnimes = [];
 
@@ -32,26 +34,24 @@ function animeImage(data) {
   }
 }
 
+
 function getDataApi() {
   fetch(
-    'https://api.jikan.moe/v4/anime' //?q=${inputAnime}
+    'https://api.jikan.moe/v4/anime?q=${inputValue}'
   )
     .then((response) => response.json())
     .then((data) => {
       let dataAnimes = data.data;
       renderAnime(dataAnimes);
+
     });
 }
-
 getDataApi();
 
-function filterAnime(event) {
-  event.preventDefault();
-
-  const AnimeListFiltered = dataAnimes.filter (({anime}) => anime.includes(inputAnime.value));
+function filterAnime() {
+  const AnimeListFiltered = dataAnimes.filter(({title}) => title.includes(inputValue));
 
   renderAnime(AnimeListFiltered);
-
 }
 
 btnSearch.addEventListener('click', filterAnime);
