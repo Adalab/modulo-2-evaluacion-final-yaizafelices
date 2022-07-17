@@ -1,3 +1,6 @@
+'use strict';
+const favoriteList = document.querySelector('.js-favorite-list');
+
 let favorites = [];
 
 

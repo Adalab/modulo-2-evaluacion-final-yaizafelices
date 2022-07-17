@@ -9,7 +9,6 @@
 
     &__favorite{
         border: 3px solid $color-font;
-        border-radius: 4%;
         margin: 20px;
 
         @media all and (min-width: 768px){
@@ -20,13 +19,13 @@
             background-color: $color-font;
             color: $color-background;
             font-size: 30px;
+            
         }
         
     }
 
     &__results{
         border: 3px solid $color-font-secondary;
-        border-radius: 4%;
         margin: 20px;
 
         @media all and (min-width: 768px){

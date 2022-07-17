@@ -1,11 +1,14 @@
 'use strict';
 
-let animes = [];
 const resultsList = document.querySelector('.js-results-list');
+const inputAnime = document.querySelector('.js-input');
+const btnSearch = document.querySelector('.js-btn-search');
 
-function renderAnime(animes) {
+let dataAnimes = [];
+
+function renderAnime(dataAnimes) {
   let html = '';
-  for (const oneAnime of animes) {
+  for (const oneAnime of dataAnimes) {
     let imageUrl = animeImage(oneAnime);
 
     html += ` <li class="js-one-anime">`;
@@ -31,14 +34,24 @@ function animeImage(data) {
 
 function getDataApi() {
   fetch(
-
-    'https://api.jikan.moe/v4/anime?'
+    'https://api.jikan.moe/v4/anime' //?q=${inputAnime}
   )
     .then((response) => response.json())
     .then((data) => {
-      let animes = data.data;
-      renderAnime(animes);
+      let dataAnimes = data.data;
+      renderAnime(dataAnimes);
     });
 }
 
 getDataApi();
+
+function filterAnime(event) {
+  event.preventDefault();
+
+  const AnimeListFiltered = dataAnimes.filter (({anime}) => anime.includes(inputAnime.value));
+
+  renderAnime(AnimeListFiltered);
+
+}
+
+btnSearch.addEventListener('click', filterAnime);
