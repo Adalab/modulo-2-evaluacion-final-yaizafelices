@@ -1,4 +1,7 @@
 'use strict';
+//EVENTS
+
+//Event button reset
 
 const btnReset = document.querySelector('.js-btn-reset');
 

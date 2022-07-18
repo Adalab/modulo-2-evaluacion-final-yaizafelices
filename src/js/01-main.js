@@ -32,6 +32,20 @@ function listenerAnimes(){
 function handleClickAnime (event) {
   const idSelected = parseInt(event.currentTarget.id);
   const animeFound = dataAnimes.find((anime)=> anime.mal_id === idSelected);
+
+  //findIndex si se encuentra ya en el array de favoritesAnimes te devuelve la posición y sino te devuelve -1
+
+  //El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+  //splice(la posición inicial desde la que borramos,cuántos elementos queremos borrar)
+  const favoriteFound = favoritesAnimes.findIndex((fav)=> fav.mal_id === idSelected);
+  if(favoriteFound === -1){
+    favoritesAnimes.push(animeFound);
+  }
+  else{
+    favoritesAnimes.splice(favoriteFound,1);
+  }
+  renderAnime();
+
 }
 
 //FUNCTIONS
@@ -40,10 +54,21 @@ function handleClickAnime (event) {
 
 function renderAnime() {
   let html = '';
+  let classFavorite = '';
+
   for (const oneAnime of dataAnimes) {
     let imageUrl = animeImage(oneAnime);
 
-    html += ` <li class="js-list-anime anime__results-list" id="${oneAnime.mal_id}">`;
+    const favoriteFoundIndex = favoritesAnimes.findIndex((fav)=> oneAnime.mal_id === fav.mal_id);
+
+    if(favoriteFoundIndex !== -1){
+      classFavorite = 'favorite-click';
+    }
+    else{
+      classFavorite = '';
+    }
+
+    html += ` <li class="js-list-anime anime__results-list ${classFavorite}" id="${oneAnime.mal_id}">`;
     html += ` <div class="js-container-anime">`;
     html += ` <h3 class="anime__results-list-title">${oneAnime.title}</h3>`;
     html += ` <img class="anime_img" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnime.title}" title="Portada de la serie de anime ${oneAnime.title}"/>`;

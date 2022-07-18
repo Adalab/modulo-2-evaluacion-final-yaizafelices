@@ -43,9 +43,15 @@
             margin: 40px;
 
             &-title{
+                color: $color-font-secondary;
                 margin-bottom: 10px;
             }
         }
     }
+}
 
+//MODIFIERS
+.favorite-click{
+    border: solid 2px $color-font-secondary;
+    border-radius: 0.2px;
 }
