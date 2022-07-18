@@ -45,8 +45,8 @@ function handleClickAddFavorite (event) {
   if(favoriteFound === -1){
     favoritesAnimes.push(animeFound);
   }
-  if(favoriteFound !== -1){
-    favoritesAnimes.splice(animeFound,1);
+  if(favoriteFound >= 0){
+    favoritesAnimes.splice(favoriteFound,1);
   }
 
   localStorage.setItem('favorites_anime', JSON.stringify(favoritesAnimes));
