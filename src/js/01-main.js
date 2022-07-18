@@ -108,11 +108,11 @@ function renderFavoriteAnime(){
   for (const oneAnimeFavorite of storageFavoritesAnimes) {
     let imageUrl = animeImage(oneAnimeFavorite);
 
-    html += ` <li class=" anime__favorite-list  id="${oneAnimeFavorite.mal_id}">`;
-    html += ` <div class="js-container-anime">`;
-    html += ` <div><h3 class="anime__favorite-list-title">${oneAnimeFavorite.title}</h3>`;
-    html += `<i class="fa-solid fa-trash-xmark"></i></div>`;
-    html += ` <img class="anime_img" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnimeFavorite.title}" title="Portada de la serie de anime ${oneAnimeFavorite.title}"/>`;
+    html += ` <li class=" anime__favorite-list  id="${oneAnimeFavorite.mal_id}"> <div class="anime__favorite-list-container">`;
+    html += ` <div class="js-container-anime anime__favorite-list-container-li">`;
+    html += `<h3 class="anime__favorite-list-title">${oneAnimeFavorite.title}</h3>`;
+    html += ` <img class="anime_img" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnimeFavorite.title}" title="Portada de la serie de anime ${oneAnimeFavorite.title}"/></div>`;
+    html += `<div"><i class="fa-solid fa-trash-can icon"></i></div>`;
     html += `</div></li>`;
   }
 

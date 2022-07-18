@@ -1,17 +1,18 @@
 .anime{
     display: flex;
-    text-align: center;
+    
     flex-direction: column;
 
-    @media all and (min-width: 768px){
+    @media all and (min-width: 1048px){
         flex-direction: row;
     }
 
     &__favorite{
         border: 3px solid $color-font;
         margin: 20px;
+        
 
-        @media all and (min-width: 768px){
+        @media all and (min-width: 1048px){
             width: 30%;
         }
 
@@ -22,13 +23,29 @@
             
         }
         
+        &-list{
+            list-style-type: none;
+            margin: 40px 40px 40px 10px;
+
+            &-title{
+                margin-bottom: 10px;
+                width: 200px;
+            }
+            &-container{
+                display: flex;
+                align-items: center;
+            }
+        }
+
+
+
     }
 
     &__results{
         border: 3px solid $color-font-secondary;
         margin: 20px;
 
-        @media all and (min-width: 768px){
+        @media all and (min-width: 1048px){
             width: 60%;
         }
 
@@ -50,8 +67,19 @@
     }
 }
 
+.icon{
+    padding: 20px;
+    color: $color-font;
+    font-size:xx-large;
+    &:hover {
+        color: $color-font-secondary;
+      }
+}
+
+
 //MODIFIERS
 .favorite-click{
     border: solid 2px $color-font-secondary;
     border-radius: 0.2px;
 }
+
