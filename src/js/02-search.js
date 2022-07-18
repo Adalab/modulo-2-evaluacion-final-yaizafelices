@@ -5,8 +5,17 @@ const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
 const inputValue = inputAnime.value.toLowerCase();
 
-
 let dataAnimes = [];
+
+const handleClickSearch = (event) => {
+  event.preventDefault();
+  const animeFiltered = dataAnimes.filter((anime) =>
+    anime.title.toLowerCase().includes(inputValue)
+  );
+  renderAnime(animeFiltered);
+};
+
+btnSearch.addEventListener('click', handleClickSearch);
 
 function renderAnime(dataAnimes) {
   let html = '';
@@ -20,9 +29,9 @@ function renderAnime(dataAnimes) {
     html += `</div></li>`;
   }
   resultsList.innerHTML = html;
-  filterAnime();
   // listenerAnimes();
 }
+
 
 function animeImage(data) {
   if (
@@ -38,7 +47,7 @@ function animeImage(data) {
 
 function getDataApi() {
   fetch(
-    'https://api.jikan.moe/v4/anime?q=${inputValue}'
+    'https://api.jikan.moe/v4/anime'  //?q=${inputValue}
   )
     .then((response) => response.json())
     .then((data) => {
@@ -49,10 +58,11 @@ function getDataApi() {
 }
 getDataApi();
 
-function filterAnime() {
-  const AnimeListFiltered = dataAnimes.filter(({title}) => title.includes(inputValue));
+// function filterAnime(event) {
+//   event.preventDefault();
+//   const AnimeListFiltered = dataAnimes.filter(({title}) => title.includes(inputValue));
 
-  renderAnime(AnimeListFiltered);
-}
+//   renderAnime(AnimeListFiltered);
+// }
 
-btnSearch.addEventListener('click', filterAnime);
+// btnSearch.addEventListener('click', filterAnime);
