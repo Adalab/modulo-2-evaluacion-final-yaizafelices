@@ -4,6 +4,7 @@
 const resultsList = document.querySelector('.js-results-list');
 const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
+const favoriteList = document.querySelector('.js-favorite-list');
 
 let dataAnimes = [];
 let favoritesAnimes = [];
@@ -44,13 +45,16 @@ function handleClickAnime (event) {
   else{
     favoritesAnimes.splice(favoriteFound,1);
   }
-  renderAnime();
 
+  localStorage.setItem('favorites_anime', JSON.stringify(favoritesAnimes));
+  renderAnime();
+  renderFavoriteAnime();
 }
+
 
 //FUNCTIONS
 
-//Function renderAnime (to paint the anime)
+//Function renderAnime (to paint the anime in results)
 
 function renderAnime() {
   let html = '';
@@ -90,6 +94,18 @@ function animeImage(data) {
     return data.images.jpg.image_url;
   }
 }
+
+//Function renderFavoriteAnime (to paint the anime in favorites)
+
+function renderFavoriteAnime(){
+  let storageFavoritesAnimes = JSON.parse(localStorage.getItem('favorites_anime'));
+
+
+
+  favoriteList.innerHTML = storageFavoritesAnimes;
+}
+
+
 
 //TO OBTAIN DATA OF THE API
 
