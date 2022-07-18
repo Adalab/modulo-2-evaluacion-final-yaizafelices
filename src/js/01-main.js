@@ -1,9 +1,16 @@
 'use strict';
 
+//VARIABLES
 const resultsList = document.querySelector('.js-results-list');
 const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
 
+let dataAnimes = [];
+let favoritesAnimes = [];
+
+//EVENTS
+
+//Event button search
 
 const handleClickSearch = (event) => {
   event.preventDefault();
@@ -13,7 +20,25 @@ const handleClickSearch = (event) => {
 
 btnSearch.addEventListener('click', handleClickSearch);
 
-function renderAnime(dataAnimes) {
+//Event click on one anime
+
+function listenerAnimes(){
+  const liAnimes = document.querySelectorAll('.js-list-anime');
+  for (const li of liAnimes){
+    li.addEventListener('click', handleClickAnime);
+  }
+}
+
+function handleClickAnime (event) {
+  const idSelected = parseInt(event.currentTarget.id);
+  const animeFound = dataAnimes.find((anime)=> anime.mal_id === idSelected);
+}
+
+//FUNCTIONS
+
+//Function renderAnime (to paint the anime)
+
+function renderAnime() {
   let html = '';
   for (const oneAnime of dataAnimes) {
     let imageUrl = animeImage(oneAnime);
@@ -28,6 +53,7 @@ function renderAnime(dataAnimes) {
   listenerAnimes();
 }
 
+//Function animeImage (to change the images that are "MAL" to "TV")
 
 function animeImage(data) {
   if (
@@ -40,6 +66,7 @@ function animeImage(data) {
   }
 }
 
+//TO OBTAIN DATA OF THE API
 
 function getDataApi(filterAnime) {
   fetch(
@@ -47,6 +74,9 @@ function getDataApi(filterAnime) {
   )
     .then((response) => response.json())
     .then((data) => {
-      renderAnime(data.data);
+      dataAnimes = data.data;
+      renderAnime();
     });
 }
+
+
