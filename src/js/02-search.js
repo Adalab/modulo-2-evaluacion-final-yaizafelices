@@ -20,6 +20,7 @@ function renderAnime(dataAnimes) {
     html += `</div></li>`;
   }
   resultsList.innerHTML = html;
+  filterAnime();
   // listenerAnimes();
 }
 
