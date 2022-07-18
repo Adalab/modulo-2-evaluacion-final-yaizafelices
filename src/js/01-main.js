@@ -9,7 +9,7 @@ const favoriteList = document.querySelector('.js-favorite-list');
 let dataAnimes = [];
 let favoritesAnimes = [];
 
-loadAnimesLocalStorage();
+onLoadFavoritesLocalStorage();
 
 //EVENTS
 
@@ -32,10 +32,10 @@ function listenerAnimes(){
   }
 }
 
-  //findIndex si se encuentra ya en el array de favoritesAnimes te devuelve la posición y sino te devuelve -1
+//findIndex si se encuentra ya en el array de favoritesAnimes te devuelve la posición y sino te devuelve -1
 
-  //El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
-  //splice(la posición inicial desde la que borramos,cuántos elementos queremos borrar)
+//El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+//splice(la posición inicial desde la que borramos,cuántos elementos queremos borrar)
 
 function handleClickAddFavorite (event) {
   const idSelected = parseInt(event.currentTarget.id);
@@ -44,6 +44,9 @@ function handleClickAddFavorite (event) {
   const favoriteFound = favoritesAnimes.findIndex((fav)=> fav.mal_id === idSelected);
   if(favoriteFound === -1){
     favoritesAnimes.push(animeFound);
+  }
+  if(favoriteFound !== -1){
+    favoritesAnimes.splice(animeFound,1);
   }
 
   localStorage.setItem('favorites_anime', JSON.stringify(favoritesAnimes));
@@ -141,18 +144,19 @@ function renderFavoriteAnime(){
   favoriteList.innerHTML = html;
 }
 
-renderFavoriteAnime();
 
 //Function loadAnimesLocalStorage (Carga los datos que hay en el localStorage en favoritos y si el array del localStorage esta vacío no carga nada )
 
 //You can use the JavaScript Array.isArray() method to check whether an object (or a variable) is an array or not. This method returns true if the value is an array; otherwise returns false.
 
-function loadAnimesLocalStorage()
+function onLoadFavoritesLocalStorage()
 {
   favoritesAnimes = JSON.parse(localStorage.getItem('favorites_anime'));
   if (!Array.isArray(favoritesAnimes)) {
     favoritesAnimes = [];
   }
+  renderFavoriteAnime();
+  getDataApi('');
 }
 
 
