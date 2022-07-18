@@ -28,24 +28,22 @@ btnSearch.addEventListener('click', handleClickSearch);
 function listenerAnimes(){
   const liAnimes = document.querySelectorAll('.js-list-anime');
   for (const li of liAnimes){
-    li.addEventListener('click', handleClickAnime);
+    li.addEventListener('click', handleClickAddFavorite);
   }
 }
-
-function handleClickAnime (event) {
-  const idSelected = parseInt(event.currentTarget.id);
-  const animeFound = dataAnimes.find((anime)=> anime.mal_id === idSelected);
 
   //findIndex si se encuentra ya en el array de favoritesAnimes te devuelve la posición y sino te devuelve -1
 
   //El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
   //splice(la posición inicial desde la que borramos,cuántos elementos queremos borrar)
+
+function handleClickAddFavorite (event) {
+  const idSelected = parseInt(event.currentTarget.id);
+  const animeFound = dataAnimes.find((anime)=> anime.mal_id === idSelected);
+
   const favoriteFound = favoritesAnimes.findIndex((fav)=> fav.mal_id === idSelected);
   if(favoriteFound === -1){
     favoritesAnimes.push(animeFound);
-  }
-  else{
-    favoritesAnimes.splice(favoriteFound,1);
   }
 
   localStorage.setItem('favorites_anime', JSON.stringify(favoritesAnimes));
@@ -53,6 +51,33 @@ function handleClickAnime (event) {
   renderFavoriteAnime();
 }
 
+
+//Event click on one trash
+
+// function listenerFavorites(){
+//   const liAnimes = document.querySelectorAll('.js-list-favorite');
+//   for (const li of liAnimes){
+//     li.addEventListener('click', handleClickRemoveFavorite);
+//   }
+// }
+
+function handleClickRemoveFavorite(id) {
+  const idSelected = parseInt(id);
+
+  const favoriteFoundIndex = favoritesAnimes.findIndex((fav)=> fav.mal_id === idSelected);
+  if(favoriteFoundIndex >= 0){
+    favoritesAnimes.splice(favoriteFoundIndex,1);
+  }
+
+  localStorage.setItem('favorites_anime', JSON.stringify(favoritesAnimes));
+  const liAnimes = document.querySelectorAll('.js-list-anime');
+  for (const li of liAnimes){
+    if (parseInt(li.id) === idSelected){
+      li.classList.remove('favorite-click');
+    }
+  }
+  renderFavoriteAnime();
+}
 
 //FUNCTIONS
 
@@ -100,29 +125,27 @@ function animeImage(data) {
 //Function renderFavoriteAnime (to paint the anime in favorites)
 
 function renderFavoriteAnime(){
-  let storageFavoritesAnimes = JSON.parse(localStorage.getItem('favorites_anime'));
-
-
   let html = '';
 
-  for (const oneAnimeFavorite of storageFavoritesAnimes) {
+  for (const oneAnimeFavorite of favoritesAnimes) {
     let imageUrl = animeImage(oneAnimeFavorite);
 
-    html += ` <li class=" anime__favorite-list  id="${oneAnimeFavorite.mal_id}"> <div class="anime__favorite-list-container">`;
+    html += ` <li class="js-list-favorite anime__favorite-list"  id="${oneAnimeFavorite.mal_id}"> <div class="anime__favorite-list-container">`;
     html += ` <div class="js-container-anime anime__favorite-list-container-li">`;
     html += `<h3 class="anime__favorite-list-title">${oneAnimeFavorite.title}</h3>`;
     html += ` <img class="anime_img" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnimeFavorite.title}" title="Portada de la serie de anime ${oneAnimeFavorite.title}"/></div>`;
-    html += `<div"><i class="fa-solid fa-trash-can icon"></i></div>`;
+    html += `<div onclick="handleClickRemoveFavorite('${oneAnimeFavorite.mal_id}')"><i class="fa-solid fa-trash-can icon"></i></div>`;
     html += `</div></li>`;
   }
-
 
   favoriteList.innerHTML = html;
 }
 
 renderFavoriteAnime();
 
-//Function
+//Function loadAnimesLocalStorage (Carga los datos que hay en el localStorage en favoritos y si el array del localStorage esta vacío no carga nada )
+
+//You can use the JavaScript Array.isArray() method to check whether an object (or a variable) is an array or not. This method returns true if the value is an array; otherwise returns false.
 
 function loadAnimesLocalStorage()
 {

@@ -11,6 +11,12 @@ function handleClickReset(event) {
   resultsList.innerHTML = '';
   favoriteList.innerHTML = '';
   localStorage.removeItem('favorites_anime');
+  favoritesAnimes = [];
+
+  const liAnimes = document.querySelectorAll('.js-list-anime');
+  for (const li of liAnimes){
+    li.classList.remove('favorite-click');
+  }
 }
 
 btnReset.addEventListener('click', handleClickReset);
