@@ -37,6 +37,15 @@
             color: $color-background;
             font-size: 30px;
         }
+
+        &-list{
+            list-style-type: none;
+            margin: 40px;
+
+            &-title{
+                margin-bottom: 10px;
+            }
+        }
     }
 
 }

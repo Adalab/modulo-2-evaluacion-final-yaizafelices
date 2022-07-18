@@ -4,6 +4,7 @@ const resultsList = document.querySelector('.js-results-list');
 const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
 
+
 const handleClickSearch = (event) => {
   event.preventDefault();
   let inputValue = inputAnime.value.toLowerCase();
@@ -17,14 +18,14 @@ function renderAnime(dataAnimes) {
   for (const oneAnime of dataAnimes) {
     let imageUrl = animeImage(oneAnime);
 
-    html += ` <li class="js-one-anime">`;
+    html += ` <li class="js-list-anime anime__results-list" id="${oneAnime.mal_id}">`;
     html += ` <div class="js-container-anime">`;
-    html += ` <h3>${oneAnime.title}</h3>`;
+    html += ` <h3 class="anime__results-list-title">${oneAnime.title}</h3>`;
     html += ` <img class="anime_img" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnime.title}" title="Portada de la serie de anime ${oneAnime.title}"/>`;
     html += `</div></li>`;
   }
   resultsList.innerHTML = html;
-  // listenerAnimes();
+  listenerAnimes();
 }
 
 

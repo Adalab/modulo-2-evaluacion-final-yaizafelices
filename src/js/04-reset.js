@@ -2,10 +2,10 @@
 
 const btnReset = document.querySelector('.js-btn-reset');
 
-function resetAnime(event) {
+function handleClickReset(event) {
   event.preventDefault();
   inputAnime.value = '';
   resultsList.innerHTML = '';
 }
 
-btnReset.addEventListener('click', resetAnime);
+btnReset.addEventListener('click', handleClickReset);
