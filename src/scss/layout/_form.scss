@@ -1,9 +1,17 @@
+.figure-hero{
+    @media all and (min-width: 768px){
+        display: flex;
+        justify-content: center;
+    }
+}
+
 .hero{
     margin-bottom: 10px;
     width: 100%;
 
     @media all and (min-width: 768px){
         margin-bottom: 30px;
+        width: 50%;
     }
 }
 
