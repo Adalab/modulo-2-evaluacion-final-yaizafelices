@@ -30,7 +30,13 @@ function listenerAnimes(){
   for (const li of liAnimes){
     li.addEventListener('click', handleClickAddFavorite);
   }
+
+  const titlesAnimes = document.querySelectorAll('.js-title-anime');
+  for (const h3 of titlesAnimes){
+    h3.addEventListener('click', handleClickAddFavorite);
+  }
 }
+
 
 //findIndex si se encuentra ya en el array de favoritesAnimes te devuelve la posición y sino te devuelve -1
 
@@ -79,6 +85,12 @@ function handleClickRemoveFavorite(id) {
       li.classList.remove('favorite-click');
     }
   }
+  const titlesAnimes = document.querySelectorAll('.js-title-anime');
+  for (const h3 of titlesAnimes){
+    if (parseInt(h3.id) === idSelected){
+      h3.classList.remove('favorite-click-text');
+    }
+  }
   renderFavoriteAnime();
 }
 
@@ -107,7 +119,7 @@ function renderAnime() {
 
     html += ` <li class="js-list-anime anime__results-list ${classFavorite}" id="${oneAnime.mal_id}">`;
     html += ` <div class="js-container-anime anime__results-list-container">`;
-    html += ` <h3 class="anime__results-list-title ${classColorText }">${oneAnime.title}</h3>`;
+    html += ` <h3 class="js-title-anime anime__results-list-title ${classColorText }">${oneAnime.title}</h3>`;
     html += ` <img class="anime__results-list-image" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnime.title}" title="Portada de la serie de anime ${oneAnime.title}"/>`;
     html += `</div></li>`;
   }
