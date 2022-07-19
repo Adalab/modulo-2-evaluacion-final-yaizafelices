@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
 
-    @media all and (min-width: 1048px){
+    @media all and (min-width: 768px){
         flex-direction: row;
     }
 
@@ -11,8 +11,7 @@
         margin: 20px;
         flex-wrap: wrap;
         
-
-        @media all and (min-width: 1048px){
+        @media all and (min-width: 768pxpx){
             width: 30%;
         }
 
@@ -20,8 +19,7 @@
             background-color: $color-font;
             color: $color-background;
             font-size: 30px;
-            text-align: center;
-            
+            text-align: center;    
         }
         
         &-list{
@@ -29,23 +27,28 @@
             margin: 10px 10px 10px 10px;
             display: flex;
             flex-wrap: wrap;
-
+            
             &-title{
                 margin-bottom: 10px;
                 width: 80px;
                 text-align: center;
                 font-size: 14px;
-                font-size: 10px;
-                
+                font-size: 10px;    
             }
 
             &-image{
                 width: 80px;
             }
+
             &-container{
-                display: flex;
                 align-items: center;
                 margin-bottom: 10px;
+                display: flex;
+                border: solid 1px $color-font;
+                
+                @media all and (min-width: 768pxpx){
+                    width: 30%;
+                }
             }
         }
 
@@ -56,9 +59,8 @@
     &__results{
         border: 3px solid $color-font-secondary;
         margin: 20px;
-    
 
-        @media all and (min-width: 1048px){
+        @media all and (min-width: 768pxpx){
             width: 60%;
         }
 
@@ -78,14 +80,12 @@
         &-list{
             list-style-type: none;
             margin: 5px;
-            width: 250px;
-            
+            width: 250px;         
 
             &-container{
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                
+                align-items: center;   
             }
 
             &-title{
@@ -108,11 +108,11 @@
     margin-right: 20px;
     color: $color-font;
     font-size:x-large;
+    
     &:hover {
         color: $color-font-secondary;
       }
 }
-
 
 //MODIFIERS
 .favorite-click{
