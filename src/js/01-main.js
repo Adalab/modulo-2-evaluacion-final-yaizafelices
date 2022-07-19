@@ -119,7 +119,7 @@ function renderAnime() {
 
     html += ` <li class="js-list-anime anime__results-list ${classFavorite}" id="${oneAnime.mal_id}">`;
     html += ` <div class="js-container-anime anime__results-list-container">`;
-    html += ` <h3 class="js-title-anime anime__results-list-title ${classColorText }">${oneAnime.title}</h3>`;
+    html += ` <h3 class="js-title-anime anime__results-list-title ${classColorText }" id="${oneAnime.mal_id}">${oneAnime.title}</h3>`;
     html += ` <img class="anime__results-list-image" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnime.title}" title="Portada de la serie de anime ${oneAnime.title}"/>`;
     html += `</div></li>`;
   }
@@ -148,9 +148,9 @@ function renderFavoriteAnime(){
   for (const oneAnimeFavorite of favoritesAnimes) {
     let imageUrl = animeImage(oneAnimeFavorite);
 
-    html += ` <li class="js-list-favorite anime__favorite-list"  id="${oneAnimeFavorite.mal_id}"> <div class="anime__favorite-list-container">`;
+    html += ` <li class="js-list-favorite anime__favorite-list" id="${oneAnimeFavorite.mal_id}"> <div class="anime__favorite-list-container">`;
     html += ` <div class="js-container-anime anime__favorite-list-container-li">`;
-    html += `<h3 class="anime__favorite-list-title">${oneAnimeFavorite.title}</h3>`;
+    html += `<h3 class="anime__favorite-list-title"  id="${oneAnimeFavorite.mal_id}">${oneAnimeFavorite.title}</h3>`;
     html += ` <img class="anime__favorite-list-image" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnimeFavorite.title}" title="Portada de la serie de anime ${oneAnimeFavorite.title}"/></div>`;
     html += `<div onclick="handleClickRemoveFavorite('${oneAnimeFavorite.mal_id}')"><i class="fa-solid fa-trash-can icon"></i></div>`;
     html += `</div></li>`;
