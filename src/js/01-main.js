@@ -6,6 +6,8 @@ const inputAnime = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btn-search');
 const favoriteList = document.querySelector('.js-favorite-list');
 
+const btnLog = document.querySelector('.js-btn-log');
+
 let dataAnimes = [];
 let favoritesAnimes = [];
 
@@ -22,6 +24,16 @@ const handleClickSearch = (event) => {
 };
 
 btnSearch.addEventListener('click', handleClickSearch);
+
+const handleClickLog = (event) => {
+  event.preventDefault();
+  for (const consl of dataAnimes){
+    console.log(consl.title);
+  }
+};
+
+btnLog.addEventListener('click', handleClickLog);
+
 
 //Event click on one anime
 
@@ -121,6 +133,7 @@ function renderAnime() {
     html += ` <div class="js-container-anime anime__results-list-container">`;
     html += ` <h3 class="js-title-anime anime__results-list-title ${classColorText }" id="${oneAnime.mal_id}">${oneAnime.title}</h3>`;
     html += ` <img class="anime__results-list-image" src="${imageUrl}" alt="Portada de la serie de anime ${oneAnime.title}" title="Portada de la serie de anime ${oneAnime.title}"/>`;
+    html += `<p>${oneAnime.broadcast.time}</p>`;
     html += `</div></li>`;
   }
   resultsList.innerHTML = html;
